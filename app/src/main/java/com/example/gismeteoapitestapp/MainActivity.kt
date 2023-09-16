@@ -2,6 +2,7 @@ package com.example.gismeteoapitestapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.gismeteoapitestapp.view.MainFragment
 
 
 class MainActivity : AppCompatActivity() {
