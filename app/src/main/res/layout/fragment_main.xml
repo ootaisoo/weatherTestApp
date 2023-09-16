@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/content_margin"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/content_margin"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/main_location_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/location" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/main_date_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/date"
+                />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/request"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="@string/request"
+            android:layout_marginStart="@dimen/content_margin"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/content_margin"
+        >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/copy"
+            android:layout_marginStart="@dimen/content_margin"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:layout_marginStart="@dimen/content_margin"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/history"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/history"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/log"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/log"
+            android:layout_marginStart="@dimen/content_margin"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

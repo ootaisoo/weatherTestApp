@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Gismeteo API Test App</string>
+    <string name="location">Location</string>
+    <string name="date">Date</string>
+    <string name="request">Request</string>
+    <string name="copy">Copy</string>
+    <string name="save">Save</string>
+    <string name="history">Requests history</string>
+    <string name="log">Errors log</string>
+</resources>
