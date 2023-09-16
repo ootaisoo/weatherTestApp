@@ -10,41 +10,51 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_marginBottom="@dimen/content_margin"
         >
 
-        <LinearLayout
-            android:layout_width="0dp"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/main_location_et"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
+            android:hint="@string/location"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             >
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/main_location_et"
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/date_picked"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:hint="@string/location" />
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/content_margin_half"
+                android:paddingEnd="@dimen/content_margin_half"
+                />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/main_date_et"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/date"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/pick_date_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/content_margin"
+                android:text="@string/pick_date"
                 />
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/request"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="@string/request"
-            android:layout_marginStart="@dimen/content_margin"
-            />
-
     </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/request"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/request"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
