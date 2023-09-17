@@ -1,13 +1,18 @@
 package com.example.gismeteoapitestapp.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.gismeteoapitestapp.di.MainComponent
+import com.example.gismeteoapitestapp.interactor.WeatherInteractor
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.util.Calendar
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
+class MainViewModel @Inject constructor(
+    private var weatherInteractor: WeatherInteractor
+) : ViewModel() {
 
     private val calendar = Calendar.getInstance()
     private val _pickedDate: MutableStateFlow<Long> = MutableStateFlow(calendar.timeInMillis)
@@ -22,5 +27,9 @@ class MainViewModel : ViewModel() {
             }
             .timeInMillis
         }
+    }
+
+    fun requestWeather() {
+        weatherInteractor.requestWeather()
     }
 }
