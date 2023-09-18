@@ -19,6 +19,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.gismeteoapitestapp.R
 import com.example.gismeteoapitestapp.component
 import com.example.gismeteoapitestapp.model.ForecastState
+import com.example.gismeteoapitestapp.view.ClipboardUtil.copyTextToClipboard
 import com.example.gismeteoapitestapp.viewmodel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
@@ -38,6 +39,7 @@ class MainFragment : Fragment() {
     private lateinit var forecastTV: TextView
     private lateinit var forecastLayout: ViewGroup
     private lateinit var progressBar: ProgressBar
+    private lateinit var copyBtn: Button
 
     private val mainViewModel: MainViewModel by viewModels {
         requireContext().component.viewModelsFactory()
@@ -62,6 +64,7 @@ class MainFragment : Fragment() {
         forecastTV = view.findViewById(R.id.forecast_tv)
         forecastLayout = view.findViewById(R.id.forecast_layout)
         progressBar = view.findViewById(R.id.progress_bar)
+        copyBtn = view.findViewById(R.id.copy_btn)
 
         setInitialDateTime()
 
@@ -71,6 +74,9 @@ class MainFragment : Fragment() {
         }
         requestBtn.setOnClickListener {
             mainViewModel.requestWeather(locationET.text.toString())
+        }
+        copyBtn.setOnClickListener {
+            requireContext().copyTextToClipboard(forecastTV.text.toString())
         }
 
         subscribe()
@@ -115,7 +121,7 @@ class MainFragment : Fragment() {
             is ForecastState.Success -> {
                 forecastLayout.isVisible = true
                 progressBar.isVisible = false
-                forecastTV.text = state.forecast.description.full
+                forecastTV.text = state.forecast.description?.full
             }
         }
     }

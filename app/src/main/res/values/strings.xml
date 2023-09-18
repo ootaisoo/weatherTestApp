@@ -9,4 +9,6 @@
     <string name="history">Requests history</string>
     <string name="log">Errors log</string>
     <string name="error">Something went wrong</string>
+    <string name="text_copied">Text copied to clipboard</string>
+    <string name="forecast">Forecast</string>
 </resources>

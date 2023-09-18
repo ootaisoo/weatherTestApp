@@ -86,7 +86,7 @@
                 >
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/copy"
+                    android:id="@+id/copy_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -94,7 +94,7 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/save"
+                    android:id="@+id/save_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

@@ -2,7 +2,6 @@ package com.example.gismeteoapitestapp.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.gismeteoapitestapp.interactor.WeatherInteractor
-import com.example.gismeteoapitestapp.model.Forecast
 import com.example.gismeteoapitestapp.model.ForecastState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
