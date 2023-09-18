@@ -8,4 +8,5 @@
     <string name="save">Save</string>
     <string name="history">Requests history</string>
     <string name="log">Errors log</string>
+    <string name="error">Something went wrong</string>
 </resources>

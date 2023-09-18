@@ -1,5 +1,7 @@
 package com.example.gismeteoapitestapp.interactor
 
+import com.example.gismeteoapitestapp.model.Forecast
+
 interface WeatherInteractor {
-    fun requestWeather()
+    suspend fun requestForecast(location: String, onResult: (Result<Forecast>) -> Unit)
 }
