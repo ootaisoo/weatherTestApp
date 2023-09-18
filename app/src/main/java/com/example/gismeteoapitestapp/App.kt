@@ -11,7 +11,9 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        mainComponent = DaggerMainComponent.create()
+        mainComponent = DaggerMainComponent.builder()
+            .appContext(this)
+            .build()
     }
 }
 

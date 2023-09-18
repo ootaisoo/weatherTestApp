@@ -1,6 +1,7 @@
 package com.example.gismeteoapitestapp.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.gismeteoapitestapp.interactor.CachingInteractor
 import com.example.gismeteoapitestapp.interactor.WeatherInteractor
 import com.example.gismeteoapitestapp.model.ForecastState
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +16,8 @@ import java.util.Calendar
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    private var weatherInteractor: WeatherInteractor
+    private var weatherInteractor: WeatherInteractor,
+    private var cachingInteractor: CachingInteractor
 ) : ViewModel() {
 
     private val ioScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
@@ -51,5 +53,13 @@ class MainViewModel @Inject constructor(
                     }
             }
         }
+    }
+
+    fun copyTextToClipboard(text: String) {
+        cachingInteractor.copyTextToClipboard(text)
+    }
+
+    fun saveTextToDisk(text: String) {
+        cachingInteractor.saveToExternalStorage(text)
     }
 }
