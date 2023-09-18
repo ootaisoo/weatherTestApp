@@ -57,79 +57,62 @@
         android:text="@string/request"
         />
 
-    <LinearLayout
-        android:id="@+id/forecast_layout"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/content_margin"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="@dimen/content_margin"
         >
 
-        <FrameLayout
-            android:id="@+id/progress_bar_layout"
+        <LinearLayout
+            android:id="@+id/forecast_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             >
 
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/forecast_tv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="@dimen/content_margin"
+                android:background="@color/grey"
                 />
 
-        </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/forecast_tv"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:background="@color/grey"
-            />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/copy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/copy"
+                    />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/copy"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/save"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/save"
+                    android:layout_marginStart="@dimen/content_margin"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/copy"
-            android:layout_marginStart="@dimen/content_margin"
+            android:layout_gravity="center"
             />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/save"
-            android:layout_marginStart="@dimen/content_margin"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:gravity="bottom"
-        >
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/history"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/history"
-            />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/log"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/log"
-            android:layout_marginStart="@dimen/content_margin"
-            />
-
-    </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>

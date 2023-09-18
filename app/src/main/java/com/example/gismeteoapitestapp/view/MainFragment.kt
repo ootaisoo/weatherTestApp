@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -36,7 +37,7 @@ class MainFragment : Fragment() {
     private lateinit var locationET: EditText
     private lateinit var forecastTV: TextView
     private lateinit var forecastLayout: ViewGroup
-    private lateinit var progressBarLayout: ViewGroup
+    private lateinit var progressBar: ProgressBar
 
     private val mainViewModel: MainViewModel by viewModels {
         requireContext().component.viewModelsFactory()
@@ -60,7 +61,7 @@ class MainFragment : Fragment() {
         locationET = view.findViewById(R.id.main_location_et)
         forecastTV = view.findViewById(R.id.forecast_tv)
         forecastLayout = view.findViewById(R.id.forecast_layout)
-        progressBarLayout = view.findViewById(R.id.progress_bar_layout)
+        progressBar = view.findViewById(R.id.progress_bar)
 
         setInitialDateTime()
 
@@ -101,19 +102,19 @@ class MainFragment : Fragment() {
         when (state) {
             is ForecastState.Empty -> {
                 forecastLayout.isVisible = false
+                progressBar.isVisible = false
             }
             is ForecastState.Loading -> {
-                forecastLayout.isVisible = true
-                progressBarLayout.isVisible = true
+                progressBar.isVisible = true
             }
             is ForecastState.Error -> {
                 forecastLayout.isVisible = false
-                progressBarLayout.isVisible = false
+                progressBar.isVisible = false
                 Snackbar.make(root, R.string.error, Snackbar.LENGTH_INDEFINITE).show()
             }
             is ForecastState.Success -> {
                 forecastLayout.isVisible = true
-                progressBarLayout.isVisible = false
+                progressBar.isVisible = false
                 forecastTV.text = state.forecast.description.full
             }
         }
