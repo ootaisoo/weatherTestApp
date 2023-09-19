@@ -3,6 +3,8 @@ package com.example.gismeteoapitestapp.viewmodel
 import androidx.lifecycle.ViewModel
 import com.example.gismeteoapitestapp.interactor.CachingInteractor
 import com.example.gismeteoapitestapp.interactor.WeatherInteractor
+import com.example.gismeteoapitestapp.model.Description
+import com.example.gismeteoapitestapp.model.Forecast
 import com.example.gismeteoapitestapp.model.ForecastState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -55,11 +57,11 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun copyTextToClipboard(text: String) {
-        cachingInteractor.copyTextToClipboard(text)
+    fun copyToClipboard(text: String) {
+        cachingInteractor.copyToClipboard(text)
     }
 
-    fun saveTextToDisk(text: String) {
-        cachingInteractor.saveToExternalStorage(text)
+    fun saveToDisk(text: String) {
+        cachingInteractor.saveToDisk(text)
     }
 }

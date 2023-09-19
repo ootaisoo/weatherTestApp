@@ -13,6 +13,8 @@ import com.example.gismeteoapitestapp.repository.WeatherRepository
 import com.example.gismeteoapitestapp.repository.WeatherRepositoryImpl
 import com.example.gismeteoapitestapp.viewmodel.MainViewModel
 import com.example.gismeteoapitestapp.viewmodel.ViewModelFactory
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
@@ -65,9 +67,15 @@ class MainModule {
 
     @Provides
     fun provideCachingRepository(
-        context: Context
+        context: Context,
+        gson: Gson,
     ): CachingRepository {
-        return CachingRepositoryImpl(context)
+        return CachingRepositoryImpl(context, gson)
+    }
+
+    @Provides
+    fun provideGson(): Gson {
+        return GsonBuilder().create()
     }
 
 }

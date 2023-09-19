@@ -1,5 +1,6 @@
 package com.example.gismeteoapitestapp.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.LayoutInflater
@@ -19,6 +20,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.gismeteoapitestapp.R
 import com.example.gismeteoapitestapp.component
 import com.example.gismeteoapitestapp.model.ForecastState
+import com.example.gismeteoapitestapp.repository.CachingRepositoryImpl
+import com.example.gismeteoapitestapp.repository.CachingRepositoryImpl.Companion.CREATE_FILE
 import com.example.gismeteoapitestapp.viewmodel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
@@ -77,10 +80,10 @@ class MainFragment : Fragment() {
             mainViewModel.requestWeather(locationET.text.toString())
         }
         copyBtn.setOnClickListener {
-            mainViewModel.copyTextToClipboard(forecastTV.text.toString())
+            mainViewModel.copyToClipboard(forecastTV.text.toString())
         }
         saveBtn.setOnClickListener {
-            mainViewModel.saveTextToDisk(forecastTV.text.toString())
+            mainViewModel.saveToDisk(forecastTV.text.toString())
         }
 
         subscribe()

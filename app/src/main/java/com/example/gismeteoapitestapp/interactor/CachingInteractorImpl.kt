@@ -6,11 +6,11 @@ class CachingInteractorImpl(
     private val cachingRepository: CachingRepository
 ) : CachingInteractor {
 
-    override fun copyTextToClipboard(text: String) {
-        cachingRepository.copyTextToClipboard(text)
+    override fun copyToClipboard(text: String) {
+        cachingRepository.copyToClipboard(text)
     }
 
-    override fun saveToExternalStorage(text: String) {
-        cachingRepository.saveToExternalStorage(text)
+    override fun saveToDisk(text: String) {
+        cachingRepository.saveToDownloads(text)
     }
 }

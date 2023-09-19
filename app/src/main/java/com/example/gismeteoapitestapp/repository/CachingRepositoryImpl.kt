@@ -10,15 +10,18 @@ import com.example.gismeteoapitestapp.R
 import com.google.gson.Gson
 import java.io.File
 
+
 class CachingRepositoryImpl(
-    private val context: Context
+    private val context: Context,
+    private val gson: Gson
 ) : CachingRepository {
 
     companion object {
-        private const val FORECAST_FILE = "forecast.txt"
+        const val FORECAST_FILE = "forecast.txt"
+
     }
 
-    override fun copyTextToClipboard(text: String) {
+    override fun copyToClipboard(text: String) {
         val label = context.getString(R.string.forecast)
         val message = context.getString(R.string.text_copied)
         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -29,14 +32,13 @@ class CachingRepositoryImpl(
         }
     }
 
-    override fun saveToExternalStorage(text: String) {
-        val file = File(
-            context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
+    override fun saveToDownloads(text: String) {
+        val file = File(Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_DOWNLOADS),
             FORECAST_FILE
         )
 
-        file.absolutePath
-
-        file.writeText(Gson().toJson(text))
+        file.writeText(gson.toJson(text))
     }
+
 }
