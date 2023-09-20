@@ -1,9 +1,11 @@
 package com.example.gismeteoapitestapp.viewmodel
 
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.example.gismeteoapitestapp.interactor.CachingInteractor
 import com.example.gismeteoapitestapp.interactor.WeatherInteractor
 import com.example.gismeteoapitestapp.model.ForecastState
+import com.example.gismeteoapitestapp.router.MainRouter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -17,7 +19,8 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val weatherInteractor: WeatherInteractor,
-    private val cachingInteractor: CachingInteractor
+    private val cachingInteractor: CachingInteractor,
+    private var router: MainRouter,
 ) : ViewModel() {
 
     private val ioScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
@@ -62,4 +65,10 @@ class HomeViewModel @Inject constructor(
     fun saveToDisk(text: String) {
         cachingInteractor.saveToDisk(text)
     }
+
+    fun showLog(t: Throwable) {
+        router.showErrorsLog(t)
+    }
+
+    fun onAttachFragment(fragment: Fragment) = router.onAttachFragment(fragment)
 }

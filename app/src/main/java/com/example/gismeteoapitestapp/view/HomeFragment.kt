@@ -1,5 +1,6 @@
 package com.example.gismeteoapitestapp.view
 
+import android.content.Context
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -28,9 +30,17 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
 
-class MainFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private lateinit var root: ViewGroup
+    companion object {
+        fun newInstance(bundle: Bundle? = null): HomeFragment {
+            return HomeFragment().apply {
+                arguments = bundle
+            }
+        }
+    }
+
+    private lateinit var root: CoordinatorLayout
     private lateinit var pickedDateTV: TextView
     private lateinit var pickDateBtn: Button
     private lateinit var requestBtn: Button
@@ -43,6 +53,11 @@ class MainFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModels {
         requireContext().component.viewModelsFactory()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        homeViewModel.onAttachFragment(this)
     }
 
     override fun onCreateView(
@@ -120,7 +135,12 @@ class MainFragment : Fragment() {
             is ForecastState.Error -> {
                 forecastLayout.isVisible = false
                 progressBar.isVisible = false
-                Snackbar.make(root, R.string.error, Snackbar.LENGTH_INDEFINITE).show()
+                Snackbar
+                    .make(root, R.string.error, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.show_log) {
+                        homeViewModel.showLog(state.t)
+                    }
+                    .show()
             }
             is ForecastState.Success -> {
                 forecastLayout.isVisible = true

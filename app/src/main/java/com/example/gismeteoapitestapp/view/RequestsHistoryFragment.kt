@@ -16,6 +16,14 @@ import com.example.gismeteoapitestapp.viewmodel.RequestsHistoryViewModel
 
 class RequestsHistoryFragment : Fragment() {
 
+    companion object {
+        fun newInstance(bundle: Bundle? = null): RequestsHistoryFragment {
+            return RequestsHistoryFragment().apply {
+                arguments = bundle
+            }
+        }
+    }
+
     private lateinit var recycler: RecyclerView
     private lateinit var requestsAdapter: RequestsAdapter
 

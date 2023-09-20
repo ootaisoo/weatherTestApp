@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     mainViewModel.showRequestsHistory()
                     drawerLayout.closeDrawers()
                 }
-                R.id.log -> mainViewModel.showErrorsLog()
+                R.id.home -> mainViewModel.showHome()
             }
             true
         }

@@ -13,9 +13,9 @@ class WeatherInteractorImpl(
         weatherRepository.searchId(location)
             .toKotlinResult()
             .onSuccess {
-                val id = 4368
+                val id = it.response?.items?.get(0)?.id
                 id?.let {
-                    weatherRepository.requestForecast(id)
+                    weatherRepository.requestForecast(0)
                         .toKotlinResult()
                         .onSuccess {
                             onResult(Result.success(it))

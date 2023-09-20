@@ -1,118 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_margin="@dimen/content_margin"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="@dimen/content_margin"
-        >
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/main_location_et"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/location"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/date_picked_tv"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:gravity="center_vertical"
-                android:paddingStart="@dimen/content_margin_half"
-                android:paddingEnd="@dimen/content_margin_half"
-                />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/pick_date_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/content_margin"
-                android:text="@string/pick_date"
-                />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/request_btn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="@string/request"
-        />
-
-    <FrameLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginVertical="@dimen/content_margin"
-        >
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/forecast_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginBottom="@dimen/content_margin"
             >
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/forecast_tv"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/main_location_et"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginBottom="@dimen/content_margin"
-                android:background="@color/colorPrimary"
+                android:layout_height="wrap_content"
+                android:hint="@string/location"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 >
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/copy_btn"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/date_picked_tv"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/copy"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/content_margin_half"
+                    android:paddingEnd="@dimen/content_margin_half"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/save_btn"
-                    android:layout_width="0dp"
+                    android:id="@+id/pick_date_btn"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/save"
                     android:layout_marginStart="@dimen/content_margin"
+                    android:text="@string/pick_date"
                     />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/request_btn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="@string/request"
             />
 
-    </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="@dimen/content_margin"
+            >
 
-</LinearLayout>
+            <LinearLayout
+                android:id="@+id/forecast_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/forecast_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="@dimen/content_margin"
+                    android:background="@color/colorPrimary"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/copy_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/copy"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/save_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/save"
+                        android:layout_marginStart="@dimen/content_margin"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
