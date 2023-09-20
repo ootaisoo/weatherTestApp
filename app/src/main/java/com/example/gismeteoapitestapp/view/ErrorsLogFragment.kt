@@ -2,6 +2,7 @@ package com.example.gismeteoapitestapp.view
 
 import android.content.Context
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,6 +61,7 @@ class ErrorsLogFragment : Fragment() {
             .plus("\n")
             .plus(arguments?.getString(MESSAGE))
 
+        errorLogTv.setMovementMethod(ScrollingMovementMethod())
         errorLogTv.text = errorLog
     }
 }

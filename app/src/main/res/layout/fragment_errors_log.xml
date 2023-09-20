@@ -14,6 +14,7 @@
         android:layout_marginTop="@dimen/content_margin"
         android:layout_marginStart="@dimen/content_margin"
         android:layout_marginEnd="@dimen/content_margin"
+        android:scrollbars = "vertical"
         />
 
     <androidx.appcompat.widget.AppCompatButton
