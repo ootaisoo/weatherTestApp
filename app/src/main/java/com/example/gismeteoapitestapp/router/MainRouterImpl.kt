@@ -1,7 +1,9 @@
 package com.example.gismeteoapitestapp.router
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.gismeteoapitestapp.R
@@ -53,8 +55,8 @@ class MainRouterImpl : MainRouter {
     }
 
     override fun sendEmail(text: String) {
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.type = "message/rfc822"
+        val intent = Intent(Intent.ACTION_SENDTO)
+        intent.data = Uri.parse("mailto:")
         intent.putExtra(Intent.EXTRA_TEXT, text)
         val mailer = Intent.createChooser(intent, null)
         fragmentReference.get()?.requireActivity()?.startActivity(mailer)
