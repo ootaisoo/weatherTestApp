@@ -12,14 +12,16 @@ class RequestsHistoryViewModel @Inject constructor(
     private val cachingInteractor: CachingInteractor
 ) : ViewModel() {
 
-    private val _historyItems: MutableStateFlow<List<HistoryItem>> = MutableStateFlow(mutableListOf())
-    val historyItems: StateFlow<List<HistoryItem>> = _historyItems.asStateFlow()
+    private val END_HTTP_REGEX = "<-- END HTTP \\(.*\\)".toRegex()
+
+    private val _historyItems: MutableStateFlow<List<String>> = MutableStateFlow(mutableListOf())
+    val historyItems: StateFlow<List<String>> = _historyItems.asStateFlow()
 
     fun fetchHistory() {
         _historyItems.value = cachingInteractor.fetchHistory().parseHistory()
     }
 
-    fun String.parseHistory(): List<HistoryItem> {
-        return mutableListOf()
+    fun String.parseHistory(): List<String> {
+        return split(END_HTTP_REGEX).toList()
     }
 }

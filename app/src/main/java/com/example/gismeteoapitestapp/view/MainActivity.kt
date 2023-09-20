@@ -38,7 +38,10 @@ class MainActivity : AppCompatActivity() {
 
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.history -> mainViewModel.showRequestsHistory()
+                R.id.history -> {
+                    mainViewModel.showRequestsHistory()
+                    drawerLayout.closeDrawers()
+                }
                 R.id.log -> mainViewModel.showErrorsLog()
             }
             true

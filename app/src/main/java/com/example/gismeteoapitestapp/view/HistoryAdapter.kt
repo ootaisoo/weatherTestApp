@@ -10,7 +10,7 @@ import com.example.gismeteoapitestapp.model.HistoryItem
 
 class RequestsAdapter : RecyclerView.Adapter<HistoryViewHolder>() {
 
-    private val items: MutableList<HistoryItem> = mutableListOf()
+    private val items: MutableList<String> = mutableListOf()
 
     override fun getItemCount() = items.size
 
@@ -25,7 +25,7 @@ class RequestsAdapter : RecyclerView.Adapter<HistoryViewHolder>() {
         holder.bind(items[position])
     }
 
-    fun update(newItems: List<HistoryItem>) {
+    fun update(newItems: List<String>) {
         items.clear()
         items.addAll(newItems)
         notifyDataSetChanged()
@@ -34,8 +34,7 @@ class RequestsAdapter : RecyclerView.Adapter<HistoryViewHolder>() {
 
 class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(item: HistoryItem) {
-        itemView.findViewById<TextView>(R.id.request_tv).text = item.request
-        itemView.findViewById<TextView>(R.id.response_tv).text = item.response
+    fun bind(item: String) {
+        itemView.findViewById<TextView>(R.id.request_tv).text = item
     }
 }
