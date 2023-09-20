@@ -13,18 +13,14 @@ class WeatherInteractorImpl(
         weatherRepository.searchId(location)
             .toKotlinResult()
             .onSuccess {
-                val id = it.response?.items?.get(0)?.id
-                id?.let {
-                    weatherRepository.requestForecast(0)
-                        .toKotlinResult()
-                        .onSuccess {
-                            onResult(Result.success(it))
-                        }.onFailure {
-                            onResult(Result.failure(it))
-                        }
-                }?.getOrElse {
-                    onResult(Result.failure(IllegalStateException()))
-                }
+                val locationId = it.response.items[0].id
+                val response = weatherRepository.requestForecast(locationId)
+                response.toKotlinResult()
+                    .onSuccess { forecast ->
+                        onResult(Result.success(forecast))
+                    }.onFailure { throwable ->
+                        onResult(Result.failure(throwable))
+                    }
             }
             .onFailure {
                 onResult(Result.failure(it))

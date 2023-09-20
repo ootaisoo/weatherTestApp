@@ -145,7 +145,7 @@ class HomeFragment : Fragment() {
             is ForecastState.Success -> {
                 forecastLayout.isVisible = true
                 progressBar.isVisible = false
-                forecastTV.text = state.forecast.response?.description?.full
+                forecastTV.text = state.forecast.toString()
             }
         }
     }

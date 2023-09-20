@@ -19,7 +19,10 @@ interface GismeteoApiService {
     @Headers("X-Gismeteo-Token: 64ad4248a21ed5.08392450")
     suspend fun searchId(@Query("query") location: String): Response<SearchResult>
 
-    @GET("/v2/weather/current/{id}/")
+    @GET("/v2/weather/forecast/aggregate/{id}/")
     @Headers("X-Gismeteo-Token: 64ad4248a21ed5.08392450")
-    suspend fun requestForecast(@Path("id") id: Int): Response<Forecast>
+    suspend fun requestForecast(
+        @Path("id") id: Int,
+        @Query("days") days: Int = 10
+    ): Response<Forecast>
 }

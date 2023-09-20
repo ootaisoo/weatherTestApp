@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 
 data class Forecast(
-    @SerializedName("meta"     ) var meta     : Meta?     = Meta(),
-    @SerializedName("response" ) var response : ForecastResponse? = ForecastResponse()
+    @SerializedName("meta"     ) var meta     : Meta,
+    @SerializedName("response" ) var response : List<ForecastResponse>
 )
 
 data class Precipitation (
@@ -13,7 +13,7 @@ data class Precipitation (
     @SerializedName("type_ext"   ) var typeExt    : String? = null,
     @SerializedName("intensity"  ) var intensity  : Int?    = null,
     @SerializedName("correction" ) var correction : String? = null,
-    @SerializedName("amount"     ) var amount     : Int?    = null,
+    @SerializedName("amount"     ) var amount     : Float?    = null,
     @SerializedName("duration"   ) var duration   : Int?    = null,
     @SerializedName("type"       ) var type       : Int?    = null
 
@@ -21,15 +21,44 @@ data class Precipitation (
 
 data class Pressure (
 
-    @SerializedName("h_pa"      ) var hPa     : Int?    = null,
-    @SerializedName("mm_hg_atm" ) var mmHgAtm : Int?    = null,
-    @SerializedName("in_hg"     ) var inHg    : Double? = null
+    @SerializedName("h_pa"      ) var hPa     : HPa?     = HPa(),
+    @SerializedName("mm_hg_atm" ) var mmHgAtm : MmHgAtm? = MmHgAtm(),
+    @SerializedName("in_hg"     ) var inHg    : InHg?    = InHg()
+
+)
+
+data class HPa (
+
+    @SerializedName("max" ) var max : Int? = null,
+    @SerializedName("min" ) var min : Int? = null
+
+)
+
+data class MmHgAtm (
+
+    @SerializedName("max" ) var max : Int? = null,
+    @SerializedName("min" ) var min : Int? = null
+
+)
+
+data class InHg (
+
+    @SerializedName("max" ) var max : Double? = null,
+    @SerializedName("min" ) var min : Double? = null
+
+)
+
+data class Percent (
+
+    @SerializedName("max" ) var max : Int? = null,
+    @SerializedName("min" ) var min : Int? = null,
+    @SerializedName("avg" ) var avg : Int? = null
 
 )
 
 data class Humidity (
 
-    @SerializedName("percent" ) var percent : Int? = null
+    @SerializedName("percent" ) var percent : Percent? = Percent()
 
 )
 
@@ -65,14 +94,13 @@ data class Cloudiness (
 
 )
 
-
 data class Date (
 
     @SerializedName("UTC"              ) var UTC            : String? = null,
     @SerializedName("local"            ) var local          : String? = null,
     @SerializedName("time_zone_offset" ) var timeZoneOffset : Int?    = null,
     @SerializedName("hr_to_forecast"   ) var hrToForecast   : String? = null,
-    @SerializedName("unix"             ) var unix           : Int?    = null
+    @SerializedName("unix"             ) var unix           : Int
 
 )
 
@@ -129,7 +157,7 @@ data class ForecastResponse (
     @SerializedName("gm"            ) var gm            : Int?           = null,
     @SerializedName("wind"          ) var wind          : Wind?          = Wind(),
     @SerializedName("cloudiness"    ) var cloudiness    : Cloudiness?    = Cloudiness(),
-    @SerializedName("date"          ) var date          : Date?          = Date(),
+    @SerializedName("date"          ) var date          : Date,
     @SerializedName("radiation"     ) var radiation     : Radiation?     = Radiation(),
     @SerializedName("city"          ) var city          : Int?           = null,
     @SerializedName("kind"          ) var kind          : String?        = null,

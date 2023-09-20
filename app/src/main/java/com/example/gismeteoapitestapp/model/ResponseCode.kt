@@ -17,16 +17,4 @@ object ResponseCode {
             else -> UnknownError()
         }
     }
-
-    class ClientError(
-        override val message: String? = null
-    ) : IOException(message)
-
-    class ServerError(
-        override val message: String? = null
-    ) : IOException(message)
-
-    class UnknownError(
-        message: String? = null
-    ) : IOException(message)
 }

@@ -1,10 +1,14 @@
 package com.example.gismeteoapitestapp.viewmodel
 
+import android.text.format.DateUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.example.gismeteoapitestapp.interactor.CachingInteractor
 import com.example.gismeteoapitestapp.interactor.WeatherInteractor
+import com.example.gismeteoapitestapp.model.Forecast
+import com.example.gismeteoapitestapp.model.ForecastResponse
 import com.example.gismeteoapitestapp.model.ForecastState
+import com.example.gismeteoapitestapp.model.InvalidDateError
 import com.example.gismeteoapitestapp.router.MainRouter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +18,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
@@ -48,11 +55,14 @@ class HomeViewModel @Inject constructor(
         ioScope.launch {
             weatherInteractor.requestForecast(location) { forecastResult ->
                 forecastResult
-                    .onSuccess {
-                        _forecastState.value = ForecastState.Success(it)
+                    .onSuccess { forecast ->
+                        _forecastState.value = forecast
+                            .filterDate()
+                            ?.let { ForecastState.Success(it) }
+                            ?: ForecastState.Error(InvalidDateError())
                     }
-                    .onFailure {
-                        _forecastState.value = ForecastState.Error(it)
+                    .onFailure { throwable ->
+                        _forecastState.value = ForecastState.Error(throwable)
                     }
             }
         }
@@ -71,4 +81,17 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onAttachFragment(fragment: Fragment) = router.onAttachFragment(fragment)
+
+    private fun Forecast.filterDate(): ForecastResponse? {
+        return response.find {
+            val pickedDate = Date(pickedDate.value)
+            val forecastDate = Date(it.date.unix.toLong() * 1000)
+            pickedDate.toDateWithoutTime()?.compareTo(forecastDate.toDateWithoutTime()) == 0
+        }
+    }
+
+    private fun Date.toDateWithoutTime(): Date? {
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return sdf.parse(sdf.format(this))
+    }
 }
