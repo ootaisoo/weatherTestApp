@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Gismeteo API Test App</string>
+    <string name="app_name">Weather API Test App</string>
     <string name="location">Location</string>
     <string name="date">Date</string>
     <string name="request">Request</string>
@@ -11,4 +11,6 @@
     <string name="error">Something went wrong</string>
     <string name="text_copied">Text copied to clipboard</string>
     <string name="forecast">Forecast</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>

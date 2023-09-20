@@ -1,5 +1,6 @@
 package com.example.gismeteoapitestapp.interactor
 
+import com.example.gismeteoapitestapp.model.HistoryItem
 import com.example.gismeteoapitestapp.repository.CachingRepository
 
 class CachingInteractorImpl(
@@ -12,5 +13,9 @@ class CachingInteractorImpl(
 
     override fun saveToDisk(text: String) {
         cachingRepository.saveToDownloads(text)
+    }
+
+    override fun fetchHistory(): String {
+        return cachingRepository.fetchRequestsInfo()
     }
 }

@@ -18,7 +18,8 @@ class CachingRepositoryImpl(
 
     companion object {
         const val FORECAST_FILE = "forecast.txt"
-
+        const val REQUESTS_FILE = "requests.txt"
+        const val ERRORS_LOG_FILE = "requests.txt"
     }
 
     override fun copyToClipboard(text: String) {
@@ -41,4 +42,13 @@ class CachingRepositoryImpl(
         file.writeText(gson.toJson(text))
     }
 
+    override fun saveRequestsInfo(requestsInfo: String) {
+        val file = File(context.filesDir, REQUESTS_FILE)
+        file.appendText(requestsInfo)
+    }
+
+    override fun fetchRequestsInfo(): String {
+        val file = File(context.filesDir, REQUESTS_FILE)
+        return file.readText()
+    }
 }

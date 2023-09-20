@@ -19,11 +19,11 @@ object ResponseCode {
     }
 
     class ClientError(
-        message: String? = null
+        override val message: String? = null
     ) : IOException(message)
 
     class ServerError(
-        message: String? = null
+        override val message: String? = null
     ) : IOException(message)
 
     class UnknownError(

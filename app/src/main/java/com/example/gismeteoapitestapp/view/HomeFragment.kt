@@ -1,6 +1,5 @@
 package com.example.gismeteoapitestapp.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.LayoutInflater
@@ -20,9 +19,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.gismeteoapitestapp.R
 import com.example.gismeteoapitestapp.component
 import com.example.gismeteoapitestapp.model.ForecastState
-import com.example.gismeteoapitestapp.repository.CachingRepositoryImpl
-import com.example.gismeteoapitestapp.repository.CachingRepositoryImpl.Companion.CREATE_FILE
-import com.example.gismeteoapitestapp.viewmodel.MainViewModel
+import com.example.gismeteoapitestapp.viewmodel.HomeViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -44,7 +41,7 @@ class MainFragment : Fragment() {
     private lateinit var copyBtn: Button
     private lateinit var saveBtn: Button
 
-    private val mainViewModel: MainViewModel by viewModels {
+    private val homeViewModel: HomeViewModel by viewModels {
         requireContext().component.viewModelsFactory()
     }
 
@@ -77,20 +74,20 @@ class MainFragment : Fragment() {
             DatePickerFragment().show(childFragmentManager, "timePicker")
         }
         requestBtn.setOnClickListener {
-            mainViewModel.requestWeather(locationET.text.toString())
+            homeViewModel.requestWeather(locationET.text.toString())
         }
         copyBtn.setOnClickListener {
-            mainViewModel.copyToClipboard(forecastTV.text.toString())
+            homeViewModel.copyToClipboard(forecastTV.text.toString())
         }
         saveBtn.setOnClickListener {
-            mainViewModel.saveToDisk(forecastTV.text.toString())
+            homeViewModel.saveToDisk(forecastTV.text.toString())
         }
 
         subscribe()
     }
 
     private fun setInitialDateTime() {
-        pickedDateTV.text = mainViewModel.pickedDate.value.formatDate()
+        pickedDateTV.text = homeViewModel.pickedDate.value.formatDate()
     }
 
     private fun Long.formatDate(): String {
@@ -101,7 +98,7 @@ class MainFragment : Fragment() {
     }
 
     private fun subscribe() {
-        mainViewModel.apply {
+        homeViewModel.apply {
             pickedDate.collectWhenUIVisible(viewLifecycleOwner) { date ->
                 pickedDateTV.text = date.formatDate()
             }
@@ -128,7 +125,7 @@ class MainFragment : Fragment() {
             is ForecastState.Success -> {
                 forecastLayout.isVisible = true
                 progressBar.isVisible = false
-                forecastTV.text = state.forecast.description?.full
+                forecastTV.text = state.forecast.response?.description?.full
             }
         }
     }

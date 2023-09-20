@@ -32,7 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/grey"
+                android:background="@color/colorPrimary"
                 android:gravity="center_vertical"
                 android:paddingStart="@dimen/content_margin_half"
                 android:paddingEnd="@dimen/content_margin_half"
@@ -76,7 +76,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_marginBottom="@dimen/content_margin"
-                android:background="@color/grey"
+                android:background="@color/colorPrimary"
                 />
 
             <LinearLayout

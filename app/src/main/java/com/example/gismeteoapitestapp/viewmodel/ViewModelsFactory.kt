@@ -6,10 +6,14 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class ViewModelFactory @Inject constructor(
-    myViewModelProvider: Provider<MainViewModel>
+    mainViewModelProvider: Provider<MainViewModel>,
+    homeViewModelProvider: Provider<HomeViewModel>,
+    requestsHistoryViewModel: Provider<RequestsHistoryViewModel>,
 ) : ViewModelProvider.Factory {
     private val providers = mapOf<Class<*>, Provider<out ViewModel>>(
-        MainViewModel::class.java to myViewModelProvider
+        MainViewModel::class.java to mainViewModelProvider,
+        HomeViewModel::class.java to homeViewModelProvider,
+        RequestsHistoryViewModel::class.java to requestsHistoryViewModel
     )
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
