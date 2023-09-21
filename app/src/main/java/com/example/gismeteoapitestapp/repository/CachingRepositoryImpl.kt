@@ -6,15 +6,12 @@ import android.content.ContentValues
 import android.content.Context
 import android.os.Build
 import android.os.Environment
-import android.os.storage.StorageManager
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.gismeteoapitestapp.R
 import com.google.gson.Gson
 import java.io.File
-import java.io.PrintWriter
-import java.net.URL
 
 
 class CachingRepositoryImpl(

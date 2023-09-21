@@ -17,10 +17,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.gismeteoapitestapp.R
 import com.example.gismeteoapitestapp.component
 import com.example.gismeteoapitestapp.databinding.FragmentMainBinding
-import com.example.gismeteoapitestapp.model.ClientError
 import com.example.gismeteoapitestapp.model.ForecastState
-import com.example.gismeteoapitestapp.model.InvalidDateError
-import com.example.gismeteoapitestapp.model.ServerError
 import com.example.gismeteoapitestapp.model.toMessage
 import com.example.gismeteoapitestapp.viewmodel.HomeViewModel
 import com.google.android.material.snackbar.Snackbar

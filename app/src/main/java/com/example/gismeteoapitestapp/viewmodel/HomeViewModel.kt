@@ -1,6 +1,5 @@
 package com.example.gismeteoapitestapp.viewmodel
 
-import android.text.format.DateUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.example.gismeteoapitestapp.interactor.CachingInteractor

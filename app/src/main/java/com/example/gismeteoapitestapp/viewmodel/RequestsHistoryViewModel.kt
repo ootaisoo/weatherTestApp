@@ -2,7 +2,6 @@ package com.example.gismeteoapitestapp.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.gismeteoapitestapp.interactor.CachingInteractor
-import com.example.gismeteoapitestapp.model.HistoryItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

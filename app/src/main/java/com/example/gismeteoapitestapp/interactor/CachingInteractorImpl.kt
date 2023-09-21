@@ -1,6 +1,5 @@
 package com.example.gismeteoapitestapp.interactor
 
-import com.example.gismeteoapitestapp.model.HistoryItem
 import com.example.gismeteoapitestapp.repository.CachingRepository
 
 class CachingInteractorImpl(

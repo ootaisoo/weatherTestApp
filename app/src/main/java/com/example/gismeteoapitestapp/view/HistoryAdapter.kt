@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gismeteoapitestapp.R
-import com.example.gismeteoapitestapp.model.HistoryItem
 
 class RequestsAdapter : RecyclerView.Adapter<HistoryViewHolder>() {
 

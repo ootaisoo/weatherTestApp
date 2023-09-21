@@ -3,7 +3,6 @@ package com.example.gismeteoapitestapp.router
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.gismeteoapitestapp.R

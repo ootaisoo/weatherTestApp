@@ -1,7 +1,5 @@
 package com.example.gismeteoapitestapp.model
 
-import java.io.IOException
-
 object ResponseCode {
     const val INTERNAL_SERVER_ERROR = 500
     private const val CLIENT_ERROR_CODE_RANGE_ST = 400
