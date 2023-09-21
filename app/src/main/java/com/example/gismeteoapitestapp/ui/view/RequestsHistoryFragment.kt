@@ -1,4 +1,4 @@
-package com.example.gismeteoapitestapp.view
+package com.example.gismeteoapitestapp.ui.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.gismeteoapitestapp.component
 import com.example.gismeteoapitestapp.databinding.FragmentRequestsHistoryBinding
-import com.example.gismeteoapitestapp.viewmodel.RequestsHistoryViewModel
+import com.example.gismeteoapitestapp.ui.viewmodel.RequestsHistoryViewModel
 
 class RequestsHistoryFragment : Fragment() {
 

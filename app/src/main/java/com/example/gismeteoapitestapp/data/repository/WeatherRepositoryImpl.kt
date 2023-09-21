@@ -1,4 +1,4 @@
-package com.example.gismeteoapitestapp.repository
+package com.example.gismeteoapitestapp.data.repository
 
 import com.example.gismeteoapitestapp.data.GismeteoApiService
 import com.example.gismeteoapitestapp.model.Forecast

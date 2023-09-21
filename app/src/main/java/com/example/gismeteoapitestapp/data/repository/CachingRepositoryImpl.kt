@@ -1,4 +1,4 @@
-package com.example.gismeteoapitestapp.repository
+package com.example.gismeteoapitestapp.data.repository
 
 import android.content.ClipData
 import android.content.ClipboardManager

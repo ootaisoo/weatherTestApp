@@ -1,4 +1,4 @@
-package com.example.gismeteoapitestapp.router
+package com.example.gismeteoapitestapp.ui.router
 
 import android.content.Intent
 import android.net.Uri
@@ -6,11 +6,11 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.gismeteoapitestapp.R
-import com.example.gismeteoapitestapp.view.ErrorsLogFragment
-import com.example.gismeteoapitestapp.view.ErrorsLogFragment.Companion.MESSAGE
-import com.example.gismeteoapitestapp.view.ErrorsLogFragment.Companion.STACK_TRACE
-import com.example.gismeteoapitestapp.view.HomeFragment
-import com.example.gismeteoapitestapp.view.RequestsHistoryFragment
+import com.example.gismeteoapitestapp.ui.view.ErrorsLogFragment
+import com.example.gismeteoapitestapp.ui.view.ErrorsLogFragment.Companion.MESSAGE
+import com.example.gismeteoapitestapp.ui.view.ErrorsLogFragment.Companion.STACK_TRACE
+import com.example.gismeteoapitestapp.ui.view.HomeFragment
+import com.example.gismeteoapitestapp.ui.view.RequestsHistoryFragment
 import java.lang.ref.WeakReference
 
 

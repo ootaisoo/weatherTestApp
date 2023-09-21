@@ -1,6 +1,6 @@
 package com.example.gismeteoapitestapp.data
 
-import com.example.gismeteoapitestapp.repository.CachingRepository
+import com.example.gismeteoapitestapp.data.repository.CachingRepository
 import okhttp3.logging.HttpLoggingInterceptor
 
 class CustomLogger(

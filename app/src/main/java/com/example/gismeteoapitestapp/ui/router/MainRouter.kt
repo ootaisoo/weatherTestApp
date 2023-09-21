@@ -1,4 +1,4 @@
-package com.example.gismeteoapitestapp.router
+package com.example.gismeteoapitestapp.ui.router
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

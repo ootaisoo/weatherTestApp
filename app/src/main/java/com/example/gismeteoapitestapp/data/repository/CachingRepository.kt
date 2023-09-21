@@ -1,4 +1,4 @@
-package com.example.gismeteoapitestapp.repository
+package com.example.gismeteoapitestapp.data.repository
 
 interface CachingRepository {
     fun copyToClipboard(text: String)

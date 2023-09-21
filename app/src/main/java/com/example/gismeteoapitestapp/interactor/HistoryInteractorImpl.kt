@@ -1,6 +1,6 @@
 package com.example.gismeteoapitestapp.interactor
 
-import com.example.gismeteoapitestapp.repository.CachingRepository
+import com.example.gismeteoapitestapp.data.repository.CachingRepository
 
 class HistoryInteractorImpl(
     private val cachingRepository: CachingRepository

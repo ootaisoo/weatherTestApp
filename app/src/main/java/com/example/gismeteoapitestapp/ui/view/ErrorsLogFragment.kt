@@ -1,4 +1,4 @@
-package com.example.gismeteoapitestapp.view
+package com.example.gismeteoapitestapp.ui.view
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.gismeteoapitestapp.component
 import com.example.gismeteoapitestapp.databinding.FragmentErrorsLogBinding
-import com.example.gismeteoapitestapp.viewmodel.ErrorsLogViewModel
+import com.example.gismeteoapitestapp.ui.viewmodel.ErrorsLogViewModel
 
 class ErrorsLogFragment : Fragment() {
 

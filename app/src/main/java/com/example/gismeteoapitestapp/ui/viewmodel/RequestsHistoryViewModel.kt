@@ -1,4 +1,4 @@
-package com.example.gismeteoapitestapp.viewmodel
+package com.example.gismeteoapitestapp.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.gismeteoapitestapp.interactor.HistoryInteractor

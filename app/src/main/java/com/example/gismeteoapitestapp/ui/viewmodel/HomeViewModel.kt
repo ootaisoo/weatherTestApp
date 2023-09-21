@@ -1,4 +1,4 @@
-package com.example.gismeteoapitestapp.viewmodel
+package com.example.gismeteoapitestapp.ui.viewmodel
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -8,7 +8,7 @@ import com.example.gismeteoapitestapp.model.Forecast
 import com.example.gismeteoapitestapp.model.ForecastResponse
 import com.example.gismeteoapitestapp.model.ForecastState
 import com.example.gismeteoapitestapp.model.InvalidDateError
-import com.example.gismeteoapitestapp.router.MainRouter
+import com.example.gismeteoapitestapp.ui.router.MainRouter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

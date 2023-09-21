@@ -1,4 +1,4 @@
-package com.example.gismeteoapitestapp.view
+package com.example.gismeteoapitestapp.ui.view
 
 import android.content.Context
 import android.os.Bundle
@@ -20,7 +20,7 @@ import com.example.gismeteoapitestapp.component
 import com.example.gismeteoapitestapp.databinding.FragmentMainBinding
 import com.example.gismeteoapitestapp.model.ForecastState
 import com.example.gismeteoapitestapp.model.toMessage
-import com.example.gismeteoapitestapp.viewmodel.HomeViewModel
+import com.example.gismeteoapitestapp.ui.viewmodel.HomeViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect

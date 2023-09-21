@@ -1,4 +1,4 @@
-package com.example.gismeteoapitestapp.view
+package com.example.gismeteoapitestapp.ui.view
 
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import com.example.gismeteoapitestapp.viewmodel.HomeViewModel
+import com.example.gismeteoapitestapp.ui.viewmodel.HomeViewModel
 import java.util.Calendar
 
 class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {

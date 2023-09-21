@@ -1,4 +1,4 @@
-package com.example.gismeteoapitestapp.view
+package com.example.gismeteoapitestapp.ui.view
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.gismeteoapitestapp.R
 import com.example.gismeteoapitestapp.component
 import com.example.gismeteoapitestapp.databinding.ActivityMainBinding
-import com.example.gismeteoapitestapp.viewmodel.MainViewModel
+import com.example.gismeteoapitestapp.ui.viewmodel.MainViewModel
 
 
 class MainActivity : AppCompatActivity() {

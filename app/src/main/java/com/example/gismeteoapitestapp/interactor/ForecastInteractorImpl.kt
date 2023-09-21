@@ -3,8 +3,8 @@ package com.example.gismeteoapitestapp.interactor
 import com.example.gismeteoapitestapp.model.Forecast
 import com.example.gismeteoapitestapp.model.ResponseCode.toException
 import com.example.gismeteoapitestapp.model.ServerError
-import com.example.gismeteoapitestapp.repository.CachingRepository
-import com.example.gismeteoapitestapp.repository.WeatherRepository
+import com.example.gismeteoapitestapp.data.repository.CachingRepository
+import com.example.gismeteoapitestapp.data.repository.WeatherRepository
 import retrofit2.Response
 
 class ForecastInteractorImpl(
