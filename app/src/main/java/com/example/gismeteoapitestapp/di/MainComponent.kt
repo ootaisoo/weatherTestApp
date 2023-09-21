@@ -23,7 +23,12 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import javax.inject.Scope
 
+@Scope
+annotation class MainComponentScope
+
+@MainComponentScope
 @Component(modules = [MainModule::class])
 interface MainComponent {
 
@@ -43,6 +48,7 @@ interface MainComponent {
 @Module
 class MainModule {
 
+    @MainComponentScope
     @Provides
     fun provideWeatherInteractor(
         weatherRepository: WeatherRepository
@@ -50,6 +56,7 @@ class MainModule {
         return WeatherInteractorImpl(weatherRepository)
     }
 
+    @MainComponentScope
     @Provides
     fun provideWeatherRepository(
         gismeteoApiService: GismeteoApiService
@@ -57,6 +64,7 @@ class MainModule {
         return WeatherRepositoryImpl(gismeteoApiService)
     }
 
+    @MainComponentScope
     @Provides
     fun provideGisMeteoApiService(
         client: OkHttpClient
@@ -64,6 +72,7 @@ class MainModule {
         return RetrofitClient.getInstance(client).create(GismeteoApiService::class.java)
     }
 
+    @MainComponentScope
     @Provides
     fun provideOkHttpClient(
         logger: HttpLoggingInterceptor.Logger
@@ -75,6 +84,7 @@ class MainModule {
             .build()
     }
 
+    @MainComponentScope
     @Provides
     fun provideCustomLogger(
         cachingRepository: CachingRepository
@@ -82,6 +92,7 @@ class MainModule {
         return CustomLogger(cachingRepository)
     }
 
+    @MainComponentScope
     @Provides
     fun provideCachingInteractor(
         cachingRepository: CachingRepository
@@ -89,6 +100,7 @@ class MainModule {
         return CachingInteractorImpl(cachingRepository)
     }
 
+    @MainComponentScope
     @Provides
     fun provideCachingRepository(
         context: Context,
@@ -97,11 +109,13 @@ class MainModule {
         return CachingRepositoryImpl(context, gson)
     }
 
+    @MainComponentScope
     @Provides
     fun provideGson(): Gson {
         return GsonBuilder().create()
     }
 
+    @MainComponentScope
     @Provides
     fun provideMainRouter(): MainRouter {
         return MainRouterImpl()
