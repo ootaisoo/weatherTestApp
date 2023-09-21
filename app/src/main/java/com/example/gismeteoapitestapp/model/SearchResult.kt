@@ -4,52 +4,59 @@ import com.google.gson.annotations.SerializedName
 
 data class SearchResult(
 
-    @SerializedName("meta"     ) var meta     : Meta,
-    @SerializedName("response" ) var response : Response
+    @SerializedName("meta"     ) val meta     : Meta,
+    @SerializedName("response" ) val response : Response
 
 )
 
 data class Meta (
 
-    @SerializedName("message" ) var message : String? = null,
-    @SerializedName("code"    ) var code    : String? = null
+    @SerializedName("message" ) val message : String? = null,
+    @SerializedName("code"    ) val code    : String? = null
 
 )
 
 
 data class Response (
 
-    @SerializedName("items" ) var items : List<Items>,
-    @SerializedName("total" ) var total : Int
+    @SerializedName("items" ) val items : List<Items> = arrayListOf(),
+    @SerializedName("total" ) val total : Int
 
 )
 
 data class Items (
 
-    @SerializedName("district"    ) var district    : District? = District(),
-    @SerializedName("id"          ) var id          : Int,
-    @SerializedName("subDistrict" ) var subDistrict : String?   = null,
-    @SerializedName("url"         ) var url         : String?   = null,
-    @SerializedName("nameP"       ) var nameP       : String?   = null,
-    @SerializedName("name"        ) var name        : String?   = null,
-    @SerializedName("rate"        ) var rate        : Int?      = null,
-    @SerializedName("weight"      ) var weight      : Long?      = null,
-    @SerializedName("kind"        ) var kind        : String?   = null,
-    @SerializedName("country"     ) var country     : Country?  = Country()
+    @SerializedName("district"    ) val district    : District?,
+    @SerializedName("id"          ) val id          : Int,
+    @SerializedName("subDistrict" ) val subDistrict : SubDistrict?,
+    @SerializedName("url"         ) val url         : String?   = null,
+    @SerializedName("nameP"       ) val nameP       : String?   = null,
+    @SerializedName("name"        ) val name        : String?   = null,
+    @SerializedName("rate"        ) val rate        : Int?      = null,
+    @SerializedName("weight"      ) val weight      : Long?      = null,
+    @SerializedName("kind"        ) val kind        : String?   = null,
+    @SerializedName("country"     ) val country     : Country?  = Country()
 
 )
 
 data class Country (
 
-    @SerializedName("name"  ) var name  : String? = null,
-    @SerializedName("code"  ) var code  : String? = null,
-    @SerializedName("nameP" ) var nameP : String? = null
+    @SerializedName("name"  ) val name  : String? = null,
+    @SerializedName("code"  ) val code  : String? = null,
+    @SerializedName("nameP" ) val nameP : String? = null
 
 )
 
 data class District (
 
-    @SerializedName("name"  ) var name  : String? = null,
-    @SerializedName("nameP" ) var nameP : String? = null
+    @SerializedName("name"  ) val name  : String? = null,
+    @SerializedName("nameP" ) val nameP : String? = null
+
+)
+
+data class SubDistrict (
+
+    @SerializedName("name"  ) val name  : String? = null,
+    @SerializedName("nameP" ) val nameP : String? = null
 
 )

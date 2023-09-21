@@ -2,6 +2,7 @@ package com.example.gismeteoapitestapp.interactor
 
 import com.example.gismeteoapitestapp.model.Forecast
 import com.example.gismeteoapitestapp.model.ResponseCode.toException
+import com.example.gismeteoapitestapp.model.ServerError
 import com.example.gismeteoapitestapp.repository.CachingRepository
 import com.example.gismeteoapitestapp.repository.WeatherRepository
 import retrofit2.Response
@@ -14,8 +15,13 @@ class ForecastInteractorImpl(
     override suspend fun requestForecast(location: String, onResult: (Result<Forecast>) -> Unit) {
         weatherRepository.searchId(location)
             .toKotlinResult()
-            .onSuccess {
-                val locationId = it.response.items[0].id
+            .onSuccess { searchResult ->
+                if (searchResult.response.items.isNullOrEmpty()) {
+                    onResult(Result.failure(ServerError()))
+                    return@onSuccess
+                }
+
+                val locationId = searchResult.response.items[0].id
                 val response = weatherRepository.requestForecast(locationId)
                 response.toKotlinResult()
                     .onSuccess { forecast ->
