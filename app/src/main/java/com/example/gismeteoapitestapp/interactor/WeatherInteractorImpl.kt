@@ -33,7 +33,8 @@ inline fun <reified T> Response<T>.toKotlinResult(): Result<T> {
         if (isSuccessful && (this.body() != null)) {
             Result.success(body() as T)
         } else {
-            Result.failure(code().toException(message()))
+            val message = message().takeIf { !it.isNullOrEmpty() } ?: errorBody()?.string()
+            Result.failure(code().toException(message))
         }
     } catch (e: Throwable) {
         Result.failure(e)

@@ -17,7 +17,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.gismeteoapitestapp.R
 import com.example.gismeteoapitestapp.component
 import com.example.gismeteoapitestapp.databinding.FragmentMainBinding
+import com.example.gismeteoapitestapp.model.ClientError
 import com.example.gismeteoapitestapp.model.ForecastState
+import com.example.gismeteoapitestapp.model.InvalidDateError
+import com.example.gismeteoapitestapp.model.ServerError
+import com.example.gismeteoapitestapp.model.toMessage
 import com.example.gismeteoapitestapp.viewmodel.HomeViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
@@ -115,7 +119,7 @@ class HomeFragment : Fragment() {
                 binding.forecastLayout.isVisible = false
                 binding.progressBar.isVisible = false
                 Snackbar
-                    .make(binding.root, R.string.error, Snackbar.LENGTH_INDEFINITE)
+                    .make(binding.root, state.toMessage(), Snackbar.LENGTH_INDEFINITE)
                     .setAction(R.string.show_log) {
                         homeViewModel.showLog(state.t)
                     }

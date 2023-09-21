@@ -8,7 +8,10 @@
     <string name="save">Save</string>
     <string name="history">Requests history</string>
     <string name="home">Home</string>
-    <string name="error">Something went wrong</string>
+    <string name="client_error">Invalid request</string>
+    <string name="server_error">Server error. Try again later</string>
+    <string name="unknown_error">Something went wrong</string>
+    <string name="invalid_date_error">No forecast for this date. Please select another.</string>
     <string name="text_copied">Text copied to clipboard</string>
     <string name="forecast">Forecast</string>
     <string name="open">Open</string>
