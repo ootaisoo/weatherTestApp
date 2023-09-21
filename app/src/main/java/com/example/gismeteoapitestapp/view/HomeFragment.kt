@@ -6,11 +6,13 @@ import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,6 +24,7 @@ import com.example.gismeteoapitestapp.R
 import com.example.gismeteoapitestapp.component
 import com.example.gismeteoapitestapp.model.ForecastState
 import com.example.gismeteoapitestapp.viewmodel.HomeViewModel
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -90,6 +93,7 @@ class HomeFragment : Fragment() {
         }
         requestBtn.setOnClickListener {
             homeViewModel.requestWeather(locationET.text.toString())
+            it.hideKeyboard()
         }
         copyBtn.setOnClickListener {
             homeViewModel.copyToClipboard(forecastTV.text.toString())
@@ -169,3 +173,8 @@ fun <T> Flow<T>.collectWhenUIVisible(
         }
     },
 )
+
+fun View.hideKeyboard(): Boolean {
+    val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+    return inputMethodManager?.hideSoftInputFromWindow(windowToken, 0) == true
+}
