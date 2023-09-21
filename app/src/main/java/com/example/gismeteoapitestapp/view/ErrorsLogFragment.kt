@@ -6,12 +6,10 @@ import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.gismeteoapitestapp.R
 import com.example.gismeteoapitestapp.component
+import com.example.gismeteoapitestapp.databinding.FragmentErrorsLogBinding
 import com.example.gismeteoapitestapp.viewmodel.ErrorsLogViewModel
 
 class ErrorsLogFragment : Fragment() {
@@ -27,8 +25,7 @@ class ErrorsLogFragment : Fragment() {
         }
     }
 
-    private lateinit var errorLogTv: TextView
-    private lateinit var emailBtn: Button
+    private lateinit var binding: FragmentErrorsLogBinding
 
     private val viewModel: ErrorsLogViewModel by viewModels {
         requireContext().component.viewModelsFactory()
@@ -43,25 +40,23 @@ class ErrorsLogFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_errors_log, container, false)
+    ): View {
+        binding = FragmentErrorsLogBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        errorLogTv = view.findViewById(R.id.error_log_tv)
-        emailBtn = view.findViewById(R.id.send_email_btn)
-
-        emailBtn.setOnClickListener {
-            viewModel.sendEmail(errorLogTv.text.toString())
+        binding.sendEmailBtn.setOnClickListener {
+            viewModel.sendEmail(binding.errorLogTv.text.toString())
         }
 
         val errorLog = arguments?.getString(STACK_TRACE)
             .plus("\n")
             .plus(arguments?.getString(MESSAGE))
 
-        errorLogTv.setMovementMethod(ScrollingMovementMethod())
-        errorLogTv.text = errorLog
+        binding.errorLogTv.setMovementMethod(ScrollingMovementMethod())
+        binding.errorLogTv.text = errorLog
     }
 }

@@ -4,20 +4,16 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
 import com.example.gismeteoapitestapp.R
 import com.example.gismeteoapitestapp.component
+import com.example.gismeteoapitestapp.databinding.ActivityMainBinding
 import com.example.gismeteoapitestapp.viewmodel.MainViewModel
-import com.google.android.material.navigation.NavigationView
 
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
-    lateinit var drawerLayout: DrawerLayout
-    lateinit var toolbar: Toolbar
-    lateinit var navigationView: NavigationView
 
     private val mainViewModel: MainViewModel by viewModels() {
         component.viewModelsFactory()
@@ -25,23 +21,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        drawerLayout = findViewById(R.id.drawer_layout)
-        toolbar = findViewById(R.id.toolbar)
-        navigationView = findViewById(R.id.nav_view)
-
-        setSupportActionBar(toolbar)
-        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
-        drawerLayout.addDrawerListener(toggle)
+        setSupportActionBar(binding.appbarMain.toolbar)
+        toggle = ActionBarDrawerToggle(
+            this,
+            binding.drawerLayout,
+            binding.appbarMain.toolbar,
+            R.string.open, R.string.close
+        )
+        binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        navigationView.setNavigationItemSelectedListener {
+        binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.history -> mainViewModel.showRequestsHistory()
                 R.id.home -> mainViewModel.showHome()
             }
-            drawerLayout.closeDrawers()
+            binding.drawerLayout.closeDrawers()
             true
         }
 

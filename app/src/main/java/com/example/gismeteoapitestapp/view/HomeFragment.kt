@@ -7,12 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,9 +16,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.gismeteoapitestapp.R
 import com.example.gismeteoapitestapp.component
+import com.example.gismeteoapitestapp.databinding.FragmentMainBinding
 import com.example.gismeteoapitestapp.model.ForecastState
 import com.example.gismeteoapitestapp.viewmodel.HomeViewModel
-import com.google.android.material.internal.ViewUtils.hideKeyboard
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -35,6 +29,8 @@ import kotlin.coroutines.EmptyCoroutineContext
 
 class HomeFragment : Fragment() {
 
+    private lateinit var binding: FragmentMainBinding
+
     companion object {
         fun newInstance(bundle: Bundle? = null): HomeFragment {
             return HomeFragment().apply {
@@ -42,17 +38,6 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
-    private lateinit var root: CoordinatorLayout
-    private lateinit var pickedDateTV: TextView
-    private lateinit var pickDateBtn: Button
-    private lateinit var requestBtn: Button
-    private lateinit var locationET: EditText
-    private lateinit var forecastTV: TextView
-    private lateinit var forecastLayout: ViewGroup
-    private lateinit var progressBar: ProgressBar
-    private lateinit var copyBtn: Button
-    private lateinit var saveBtn: Button
 
     private val homeViewModel: HomeViewModel by viewModels {
         requireContext().component.viewModelsFactory()
@@ -67,46 +52,36 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+    ): View {
+        binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        root = view.findViewById(R.id.root)
-        pickedDateTV = view.findViewById(R.id.date_picked_tv)
-        pickDateBtn = view.findViewById(R.id.pick_date_btn)
-        requestBtn = view.findViewById(R.id.request_btn)
-        locationET = view.findViewById(R.id.main_location_et)
-        forecastTV = view.findViewById(R.id.forecast_tv)
-        forecastLayout = view.findViewById(R.id.forecast_layout)
-        progressBar = view.findViewById(R.id.progress_bar)
-        copyBtn = view.findViewById(R.id.copy_btn)
-        saveBtn = view.findViewById(R.id.save_btn)
-
         setInitialDateTime()
 
-        pickDateBtn.setOnClickListener {
+        binding.pickDateBtn.setOnClickListener {
 //            TODO() make adecuate routing
             DatePickerFragment().show(childFragmentManager, "timePicker")
         }
-        requestBtn.setOnClickListener {
-            homeViewModel.requestWeather(locationET.text.toString())
+        binding.requestBtn.setOnClickListener {
+            homeViewModel.requestWeather(binding.mainLocationEt.text.toString())
             it.hideKeyboard()
         }
-        copyBtn.setOnClickListener {
-            homeViewModel.copyToClipboard(forecastTV.text.toString())
+        binding.copyBtn.setOnClickListener {
+            homeViewModel.copyToClipboard(binding.forecastTv.text.toString())
         }
-        saveBtn.setOnClickListener {
-            homeViewModel.saveToDisk(forecastTV.text.toString())
+        binding.saveBtn.setOnClickListener {
+            homeViewModel.saveToDisk(binding.forecastTv.text.toString())
         }
 
         subscribe()
     }
 
     private fun setInitialDateTime() {
-        pickedDateTV.text = homeViewModel.pickedDate.value.formatDate()
+        binding.datePickedTv.text = homeViewModel.pickedDate.value.formatDate()
     }
 
     private fun Long.formatDate(): String {
@@ -119,7 +94,7 @@ class HomeFragment : Fragment() {
     private fun subscribe() {
         homeViewModel.apply {
             pickedDate.collectWhenUIVisible(viewLifecycleOwner) { date ->
-                pickedDateTV.text = date.formatDate()
+                binding.datePickedTv.text = date.formatDate()
             }
             forecastState.collectWhenUIVisible(viewLifecycleOwner) { state ->
                 handleForecastState(state)
@@ -130,26 +105,26 @@ class HomeFragment : Fragment() {
     private fun handleForecastState(state: ForecastState) {
         when (state) {
             is ForecastState.Empty -> {
-                forecastLayout.isVisible = false
-                progressBar.isVisible = false
+                binding.forecastLayout.isVisible = false
+                binding.progressBar.isVisible = false
             }
             is ForecastState.Loading -> {
-                progressBar.isVisible = true
+                binding.progressBar.isVisible = true
             }
             is ForecastState.Error -> {
-                forecastLayout.isVisible = false
-                progressBar.isVisible = false
+                binding.forecastLayout.isVisible = false
+                binding.progressBar.isVisible = false
                 Snackbar
-                    .make(root, R.string.error, Snackbar.LENGTH_INDEFINITE)
+                    .make(binding.root, R.string.error, Snackbar.LENGTH_INDEFINITE)
                     .setAction(R.string.show_log) {
                         homeViewModel.showLog(state.t)
                     }
                     .show()
             }
             is ForecastState.Success -> {
-                forecastLayout.isVisible = true
-                progressBar.isVisible = false
-                forecastTV.text = state.forecast.toString()
+                binding.forecastLayout.isVisible = true
+                binding.progressBar.isVisible = false
+                binding.forecastTv.text = state.forecast.toString()
             }
         }
     }
