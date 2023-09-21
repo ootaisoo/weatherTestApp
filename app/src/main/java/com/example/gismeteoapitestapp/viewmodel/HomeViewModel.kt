@@ -2,8 +2,8 @@ package com.example.gismeteoapitestapp.viewmodel
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import com.example.gismeteoapitestapp.interactor.CachingInteractor
-import com.example.gismeteoapitestapp.interactor.WeatherInteractor
+import com.example.gismeteoapitestapp.interactor.HistoryInteractor
+import com.example.gismeteoapitestapp.interactor.ForecastInteractor
 import com.example.gismeteoapitestapp.model.Forecast
 import com.example.gismeteoapitestapp.model.ForecastResponse
 import com.example.gismeteoapitestapp.model.ForecastState
@@ -24,8 +24,7 @@ import java.util.Locale
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    private val weatherInteractor: WeatherInteractor,
-    private val cachingInteractor: CachingInteractor,
+    private val forecastInteractor: ForecastInteractor,
     private var router: MainRouter,
 ) : ViewModel() {
 
@@ -52,7 +51,7 @@ class HomeViewModel @Inject constructor(
     fun requestWeather(location: String) {
         _forecastState.value = ForecastState.Loading
         ioScope.launch {
-            weatherInteractor.requestForecast(location) { forecastResult ->
+            forecastInteractor.requestForecast(location) { forecastResult ->
                 forecastResult
                     .onSuccess { forecast ->
                         _forecastState.value = forecast
@@ -68,11 +67,11 @@ class HomeViewModel @Inject constructor(
     }
 
     fun copyToClipboard(text: String) {
-        cachingInteractor.copyToClipboard(text)
+        forecastInteractor.copyToClipboard(text)
     }
 
     fun saveToDisk(text: String) {
-        cachingInteractor.saveToDisk(text)
+        forecastInteractor.saveToDisk(text)
     }
 
     fun showLog(t: Throwable) {

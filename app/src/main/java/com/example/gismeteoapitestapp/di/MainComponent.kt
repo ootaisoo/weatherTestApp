@@ -4,10 +4,10 @@ import android.content.Context
 import com.example.gismeteoapitestapp.data.CustomLogger
 import com.example.gismeteoapitestapp.data.GismeteoApiService
 import com.example.gismeteoapitestapp.data.RetrofitClient
-import com.example.gismeteoapitestapp.interactor.CachingInteractor
-import com.example.gismeteoapitestapp.interactor.CachingInteractorImpl
-import com.example.gismeteoapitestapp.interactor.WeatherInteractor
-import com.example.gismeteoapitestapp.interactor.WeatherInteractorImpl
+import com.example.gismeteoapitestapp.interactor.HistoryInteractor
+import com.example.gismeteoapitestapp.interactor.HistoryInteractorImpl
+import com.example.gismeteoapitestapp.interactor.ForecastInteractor
+import com.example.gismeteoapitestapp.interactor.ForecastInteractorImpl
 import com.example.gismeteoapitestapp.repository.CachingRepository
 import com.example.gismeteoapitestapp.repository.CachingRepositoryImpl
 import com.example.gismeteoapitestapp.repository.WeatherRepository
@@ -39,8 +39,8 @@ interface MainComponent {
         fun build(): MainComponent
     }
 
-    val weatherInteractor: WeatherInteractor
-    val cachingInteractor: CachingInteractor
+    val forecastInteractor: ForecastInteractor
+    val historyInteractor: HistoryInteractor
 
     fun viewModelsFactory(): ViewModelFactory
 }
@@ -51,9 +51,10 @@ class MainModule {
     @MainComponentScope
     @Provides
     fun provideWeatherInteractor(
-        weatherRepository: WeatherRepository
-    ): WeatherInteractor {
-        return WeatherInteractorImpl(weatherRepository)
+        weatherRepository: WeatherRepository,
+        cachingRepository: CachingRepository
+    ): ForecastInteractor {
+        return ForecastInteractorImpl(weatherRepository, cachingRepository)
     }
 
     @MainComponentScope
@@ -96,8 +97,8 @@ class MainModule {
     @Provides
     fun provideCachingInteractor(
         cachingRepository: CachingRepository
-    ): CachingInteractor {
-        return CachingInteractorImpl(cachingRepository)
+    ): HistoryInteractor {
+        return HistoryInteractorImpl(cachingRepository)
     }
 
     @MainComponentScope

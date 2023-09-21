@@ -1,14 +1,14 @@
 package com.example.gismeteoapitestapp.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.gismeteoapitestapp.interactor.CachingInteractor
+import com.example.gismeteoapitestapp.interactor.HistoryInteractor
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 class RequestsHistoryViewModel @Inject constructor(
-    private val cachingInteractor: CachingInteractor
+    private val historyInteractor: HistoryInteractor
 ) : ViewModel() {
 
     private val END_HTTP_REGEX = "<-- END HTTP \\(.*\\)".toRegex()
@@ -17,7 +17,7 @@ class RequestsHistoryViewModel @Inject constructor(
     val historyItems: StateFlow<List<String>> = _historyItems.asStateFlow()
 
     fun fetchHistory() {
-        _historyItems.value = cachingInteractor.fetchHistory().parseHistory()
+        _historyItems.value = historyInteractor.fetchHistory().parseHistory()
     }
 
     fun String.parseHistory(): List<String> {

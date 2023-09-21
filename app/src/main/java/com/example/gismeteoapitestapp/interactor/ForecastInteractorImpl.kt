@@ -2,12 +2,14 @@ package com.example.gismeteoapitestapp.interactor
 
 import com.example.gismeteoapitestapp.model.Forecast
 import com.example.gismeteoapitestapp.model.ResponseCode.toException
+import com.example.gismeteoapitestapp.repository.CachingRepository
 import com.example.gismeteoapitestapp.repository.WeatherRepository
 import retrofit2.Response
 
-class WeatherInteractorImpl(
-    private val weatherRepository: WeatherRepository
-) : WeatherInteractor {
+class ForecastInteractorImpl(
+    private val weatherRepository: WeatherRepository,
+    private val cachingRepository: CachingRepository
+) : ForecastInteractor {
 
     override suspend fun requestForecast(location: String, onResult: (Result<Forecast>) -> Unit) {
         weatherRepository.searchId(location)
@@ -25,6 +27,14 @@ class WeatherInteractorImpl(
             .onFailure {
                 onResult(Result.failure(it))
             }
+    }
+
+    override fun copyToClipboard(text: String) {
+        cachingRepository.copyToClipboard(text)
+    }
+
+    override fun saveToDisk(text: String) {
+        cachingRepository.saveToDownloads(text)
     }
 }
 
