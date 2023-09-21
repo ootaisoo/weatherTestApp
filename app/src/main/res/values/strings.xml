@@ -18,4 +18,5 @@
     <string name="close">Close</string>
     <string name="send_email">Send E-mail</string>
     <string name="show_log">Show log</string>
+    <string name="provider">Provided by gismeteo.ru</string>
 </resources>
