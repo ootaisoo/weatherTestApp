@@ -19,7 +19,7 @@ data class Meta (
 
 data class Response (
 
-    @SerializedName("items" ) val items : List<Items> = arrayListOf(),
+    @SerializedName("items" ) val items : List<Items>,
     @SerializedName("total" ) val total : Int
 
 )

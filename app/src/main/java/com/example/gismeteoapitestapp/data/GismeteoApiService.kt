@@ -15,6 +15,8 @@ interface GismeteoApiService {
         const val GISMETEO_BASE_URL = "https://api.gismeteo.net/"
     }
 
+//    TODO() Provide api-token securely
+
     @GET("/v2/search/cities/")
     @Headers("X-Gismeteo-Token: 64ad4248a21ed5.08392450")
     suspend fun searchId(@Query("query") location: String): Response<SearchResult>
