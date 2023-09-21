@@ -56,7 +56,7 @@ class ErrorsLogFragment : Fragment() {
             .plus("\n")
             .plus(arguments?.getString(MESSAGE))
 
-        binding.errorLogTv.setMovementMethod(ScrollingMovementMethod())
+        binding.errorLogTv.movementMethod = ScrollingMovementMethod()
         binding.errorLogTv.text = errorLog
     }
 }

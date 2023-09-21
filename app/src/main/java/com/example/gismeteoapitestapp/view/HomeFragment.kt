@@ -3,6 +3,7 @@ package com.example.gismeteoapitestapp.view
 import android.content.Context
 import android.os.Bundle
 import android.text.format.DateUtils
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,13 +63,15 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setInitialDateTime()
-
+        binding.forecastTv.movementMethod = ScrollingMovementMethod()
         binding.pickDateBtn.setOnClickListener {
 //            TODO() make adecuate routing
             DatePickerFragment().show(childFragmentManager, "timePicker")
         }
         binding.requestBtn.setOnClickListener {
-            homeViewModel.requestWeather(binding.mainLocationEt.text.toString())
+            homeViewModel.requestWeather(
+                binding.mainLocationEt.text.toString().replaceFirstChar(Char::lowercase)
+            )
             it.hideKeyboard()
         }
         binding.copyBtn.setOnClickListener {

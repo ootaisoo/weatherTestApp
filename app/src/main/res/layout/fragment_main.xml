@@ -82,6 +82,8 @@
                     android:layout_weight="1"
                     android:layout_marginBottom="@dimen/content_margin"
                     android:background="@color/colorPrimary"
+                    android:padding="@dimen/content_margin"
+                    android:scrollbars = "vertical"
                     />
 
                 <LinearLayout
