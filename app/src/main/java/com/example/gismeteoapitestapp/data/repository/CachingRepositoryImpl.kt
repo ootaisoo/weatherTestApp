@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.gismeteoapitestapp.R
+import com.example.gismeteoapitestapp.model.ForecastResponse
 import com.google.gson.Gson
 import java.io.File
 
@@ -22,10 +23,10 @@ class CachingRepositoryImpl(
     companion object {
         const val FORECAST_FILE = "forecast.txt"
         const val REQUESTS_FILE = "requests.txt"
-        const val ERRORS_LOG_FILE = "requests.txt"
     }
 
-    override fun copyToClipboard(text: String) {
+    override fun copyToClipboard(forecast: ForecastResponse) {
+        val text = gson.toJson(forecast)
         val label = context.getString(R.string.forecast)
         val message = context.getString(R.string.text_copied)
         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -37,7 +38,8 @@ class CachingRepositoryImpl(
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
-    override fun saveToDownloads(text: String) {
+    override fun saveToDownloads(forecast: ForecastResponse) {
+        val text = gson.toJson(forecast)
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             saveToExternalStorage(text)
         } else {
@@ -51,7 +53,7 @@ class CachingRepositoryImpl(
             FORECAST_FILE
         )
 
-        file.writeText(gson.toJson(text))
+        file.writeText(text)
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -65,7 +67,7 @@ class CachingRepositoryImpl(
         val uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
         if (uri != null) {
             resolver.openOutputStream(uri)?.let {
-                it.write(text.toByteArray())
+                it.write(text.encodeToByteArray())
                 it.close()
             }
         }

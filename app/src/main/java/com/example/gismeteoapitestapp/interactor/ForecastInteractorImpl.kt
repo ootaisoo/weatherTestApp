@@ -1,10 +1,11 @@
 package com.example.gismeteoapitestapp.interactor
 
-import com.example.gismeteoapitestapp.model.Forecast
-import com.example.gismeteoapitestapp.model.ResponseCode.toException
-import com.example.gismeteoapitestapp.model.ServerError
 import com.example.gismeteoapitestapp.data.repository.CachingRepository
 import com.example.gismeteoapitestapp.data.repository.WeatherRepository
+import com.example.gismeteoapitestapp.model.Forecast
+import com.example.gismeteoapitestapp.model.ForecastResponse
+import com.example.gismeteoapitestapp.model.ResponseCode.toException
+import com.example.gismeteoapitestapp.model.ServerError
 import retrofit2.Response
 
 class ForecastInteractorImpl(
@@ -35,12 +36,12 @@ class ForecastInteractorImpl(
             }
     }
 
-    override fun copyToClipboard(text: String) {
-        cachingRepository.copyToClipboard(text)
+    override fun copyToClipboard(forecast: ForecastResponse) {
+        cachingRepository.copyToClipboard(forecast)
     }
 
-    override fun saveToDisk(text: String) {
-        cachingRepository.saveToDownloads(text)
+    override fun saveToDisk(forecast: ForecastResponse) {
+        cachingRepository.saveToDownloads(forecast)
     }
 }
 

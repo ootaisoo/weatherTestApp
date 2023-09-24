@@ -75,10 +75,14 @@ class HomeFragment : Fragment() {
             it.hideKeyboard()
         }
         binding.copyBtn.setOnClickListener {
-            homeViewModel.copyToClipboard(binding.forecastTv.text.toString())
+            homeViewModel.copyToClipboard(
+                (homeViewModel.forecastState.value as ForecastState.Success).forecast
+            )
         }
         binding.saveBtn.setOnClickListener {
-            homeViewModel.saveToDisk(binding.forecastTv.text.toString())
+            homeViewModel.saveToDisk(
+                (homeViewModel.forecastState.value as ForecastState.Success).forecast
+            )
         }
 
         subscribe()

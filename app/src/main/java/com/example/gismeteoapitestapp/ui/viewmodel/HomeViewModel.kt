@@ -2,7 +2,6 @@ package com.example.gismeteoapitestapp.ui.viewmodel
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import com.example.gismeteoapitestapp.interactor.HistoryInteractor
 import com.example.gismeteoapitestapp.interactor.ForecastInteractor
 import com.example.gismeteoapitestapp.model.Forecast
 import com.example.gismeteoapitestapp.model.ForecastResponse
@@ -66,12 +65,12 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun copyToClipboard(text: String) {
-        forecastInteractor.copyToClipboard(text)
+    fun copyToClipboard(forecast: ForecastResponse) {
+        forecastInteractor.copyToClipboard(forecast)
     }
 
-    fun saveToDisk(text: String) {
-        forecastInteractor.saveToDisk(text)
+    fun saveToDisk(forecast: ForecastResponse) {
+        forecastInteractor.saveToDisk(forecast)
     }
 
     fun showLog(t: Throwable) {
