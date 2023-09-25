@@ -9,6 +9,6 @@ class ErrorsLogViewModel @Inject constructor(
     private var router: MainRouter,
 ) : ViewModel() {
 
-    fun onAttachFragment(fragment: Fragment) = router.onAttachFragment(fragment)
+    fun onAttachFragment(fragment: Fragment) = router.onStartFragment(fragment)
     fun sendEmail(text: String) = router.sendEmail(text)
 }

@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentActivity
 
 interface MainRouter {
     fun onAttach(activity: FragmentActivity)
-    fun onAttachFragment(fragment: Fragment)
+    fun onStartFragment(fragment: Fragment)
     fun showHome()
     fun showRequestsHistory()
     fun showErrorsLog(t: Throwable)

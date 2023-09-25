@@ -45,11 +45,6 @@ class HomeFragment : Fragment() {
         requireContext().component.viewModelsFactory()
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        homeViewModel.onAttachFragment(this)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -86,6 +81,11 @@ class HomeFragment : Fragment() {
         }
 
         subscribe()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        homeViewModel.onStartFragment(this)
     }
 
     private fun setInitialDateTime() {

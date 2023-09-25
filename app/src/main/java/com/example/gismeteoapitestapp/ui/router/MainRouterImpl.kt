@@ -23,7 +23,7 @@ class MainRouterImpl : MainRouter {
         activityReference = WeakReference(activity)
     }
 
-    override fun onAttachFragment(fragment: Fragment) {
+    override fun onStartFragment(fragment: Fragment) {
         fragmentReference = WeakReference(fragment)
     }
 

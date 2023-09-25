@@ -77,7 +77,7 @@ class HomeViewModel @Inject constructor(
         router.showErrorsLog(t)
     }
 
-    fun onAttachFragment(fragment: Fragment) = router.onAttachFragment(fragment)
+    fun onStartFragment(fragment: Fragment) = router.onStartFragment(fragment)
 
     private fun Forecast.filterDate(): ForecastResponse? {
         return response.find {

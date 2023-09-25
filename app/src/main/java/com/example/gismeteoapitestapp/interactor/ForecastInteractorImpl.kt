@@ -6,7 +6,6 @@ import com.example.gismeteoapitestapp.model.Forecast
 import com.example.gismeteoapitestapp.model.ForecastResponse
 import com.example.gismeteoapitestapp.model.ResponseCode.toException
 import com.example.gismeteoapitestapp.model.ServerError
-import com.example.gismeteoapitestapp.model.UnknownError
 import retrofit2.Response
 
 class ForecastInteractorImpl(
