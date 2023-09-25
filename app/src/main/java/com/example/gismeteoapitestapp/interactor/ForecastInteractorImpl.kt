@@ -6,6 +6,7 @@ import com.example.gismeteoapitestapp.model.Forecast
 import com.example.gismeteoapitestapp.model.ForecastResponse
 import com.example.gismeteoapitestapp.model.ResponseCode.toException
 import com.example.gismeteoapitestapp.model.ServerError
+import com.example.gismeteoapitestapp.model.UnknownError
 import retrofit2.Response
 
 class ForecastInteractorImpl(
@@ -17,19 +18,25 @@ class ForecastInteractorImpl(
         weatherRepository.searchId(location)
             .toKotlinResult()
             .onSuccess { searchResult ->
-                if (searchResult.response.items.isNullOrEmpty()) {
-                    onResult(Result.failure(ServerError()))
-                    return@onSuccess
-                }
-
-                val locationId = searchResult.response.items[0].id
-                val response = weatherRepository.requestForecast(locationId)
-                response.toKotlinResult()
-                    .onSuccess { forecast ->
-                        onResult(Result.success(forecast))
-                    }.onFailure { throwable ->
-                        onResult(Result.failure(throwable))
+                when {
+                    searchResult.response.error != null -> {
+                        onResult(Result.failure(ServerError(searchResult.response.error!!.message)))
                     }
+                    searchResult.response.items.isNullOrEmpty() -> {
+                        onResult(Result.failure(
+                            IllegalStateException("Search result response items is empty.")))
+                    }
+                    else -> {
+                        val locationId = searchResult.response.items[0].id
+                        val response = weatherRepository.requestForecast(locationId)
+                        response.toKotlinResult()
+                            .onSuccess { forecast ->
+                                onResult(Result.success(forecast))
+                            }.onFailure { throwable ->
+                                onResult(Result.failure(throwable))
+                            }
+                    }
+                }
             }
             .onFailure {
                 onResult(Result.failure(it))

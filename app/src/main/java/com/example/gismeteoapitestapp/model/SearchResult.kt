@@ -14,8 +14,16 @@ data class Meta (
 
 
 data class Response (
-    @SerializedName("items" ) val items : List<Items> = arrayListOf(),
-    @SerializedName("total" ) val total : Int
+    @SerializedName("items" ) val items : List<Items>? = null,
+    @SerializedName("total" ) val total : Int? = null,
+    @SerializedName("error" ) var error : Error? = null
+)
+
+data class Error (
+
+    @SerializedName("message" ) var message : String? = null,
+    @SerializedName("code"    ) var code    : Int?    = null
+
 )
 
 data class Items (
