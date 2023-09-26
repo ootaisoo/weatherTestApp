@@ -70,7 +70,9 @@ class HomeViewModel @Inject constructor(
     }
 
     fun saveToDisk(forecast: ForecastResponse) {
-        forecastInteractor.saveToDisk(forecast)
+        ioScope.launch {
+            forecastInteractor.saveToDisk(forecast)
+        }
     }
 
     fun showLog(t: Throwable) {
